@@ -1,9 +1,20 @@
 applications:
   myphpapp:
     type: 'php:8.3' 
+    
+    # 1. Optimize the PHP Engine for High Traffic
+    variables:
+      php:
+        memory_limit: '256M'
+        opcache.memory_consumption: '256'
+        opcache.interned_strings_buffer: '16'
+        opcache.enable_file_override: '1'
+
     web:
       locations:
         '/':
-          # Point the web server strictly to the public folder
           root: 'public'
           passthru: '/index.php'
+          
+          # 2. Tell Upsun to cache static assets (images, css, js) for 10 minutes
+          expires: 10m
