@@ -1,0 +1,12 @@
+applications:
+  myphpapp:
+    # Defines the programming language and version to install
+    type: 'php:8.3' 
+    web:
+      locations:
+        '/':
+          # The directory where your files live.
+          # We use '.' because your index.php is directly in the root folder.
+          root: '.'
+          # The entry-point file that handles requests
+          passthru: '/index.php'
